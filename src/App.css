@@ -1,0 +1,17 @@
+* {
+  box-sizing: border-box;
+  margin: 0%;
+  padding: 0%;
+  list-style: none;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+html {
+  font-size: 10px;
+}
+
+.App {
+  width: 500px;
+  margin: 2rem auto;
+  text-align: center;
+}
