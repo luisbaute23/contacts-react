@@ -7,14 +7,14 @@ import { Table } from './components/table/Table';
 function App() {
   const [contacts, setContacts] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [datos, setDatos] = useState({id: '', name: '', lastname: '', number:''});
+  const [form, setForm] = useState();
+
   
-  console.log(datos, 'hi');
 
   useEffect(() => {
-    console.log('llamo')
+    // console.log('llamo')
     get_api();
-  },[loading]);
+  },[]);
   const get_api = async () => {
     const url ='http://localhost:3000/contacts';
     const resp = await axios.get(url);
@@ -22,10 +22,21 @@ function App() {
     setContacts(resp.data);
   }
 
+  const onSucces = () => {
+    get_api();
+  }
+  
+
   return (
     <div className="App">
-      <Form loading={loading} setLoading={setLoading} datos={datos}/>
-      <Table data={contacts} setDatos={setDatos}/>
+      <Form 
+        loading={loading} 
+        setLoading={setLoading} 
+        onSucces={onSucces}
+        setForm={setForm}
+        form={form}
+        />
+      <Table data={contacts} setForm={setForm}/>
     </div>
   );
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import './Table.css'
 import { TableRow } from './TableRow'
 
-export function Table({data, setDatos}){
+export function Table({data, setForm}){
 
     return (
         <div>
@@ -18,7 +18,7 @@ export function Table({data, setDatos}){
                 <tbody id="tbody">
                     {data.map((contact) => {
                     return(
-                        <TableRow key={contact.id} data={contact} setDatos={setDatos}/>
+                        <TableRow key={contact.id} data={contact} setForm={setForm}/>
                     )
                     }
                     )}
