@@ -8,22 +8,30 @@ export function Form({setLoading, onSucces, form, setForm}) {
     // console.log('isDirty, dirtyFields', isDirty, dirtyFields);
 
     useEffect(() => {
-        // setForm(true);
-        setValue('name', form.name)
-        console.log(form);
-        // setForm(false);
+        if(form){
+            setValue('name', form.name)
+            setValue('lastname', form.lastname)
+            setValue('number', form.number)
+            setValue('id', form.id)
+            console.log(form);
+            setForm(null);
+        }
     }, [form]);
 
     const send_data = async (data) => {
         setLoading(true);
         const url ='http://localhost:3000/contacts';
         const form = document.getElementById('form');
+        
     
             data.number = parseInt(data.number);
             if (data.id === ''){
                 await axios.post(url, data);
+                console.log(data.id);
             } else {
                 const url_concat = url + '/' + parseInt(data.id);
+                console.log(url_concat, 'soy put');
+                // const url_concat = url + '/' + parseInt(data.id);
                 await axios.put(url_concat, data);
             }
             form.reset();
@@ -36,7 +44,7 @@ export function Form({setLoading, onSucces, form, setForm}) {
             <h1> Contacs </h1>
             <form onSubmit={handleSubmit(send_data)} id="form">
                 <input 
-                    {...register("name")}
+                    {...register('name')}
                     type="text" 
                     placeholder="name" 
                     // id="name" 

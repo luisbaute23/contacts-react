@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import { Form } from './components/form/Form';
 import { Table } from './components/table/Table';
+import { BrowserRouter } from 'react-router-dom';
 
 function App() {
   const [contacts, setContacts] = useState([]);
@@ -25,19 +26,19 @@ function App() {
   const onSucces = () => {
     get_api();
   }
-  
-
   return (
-    <div className="App">
-      <Form 
-        loading={loading} 
-        setLoading={setLoading} 
-        onSucces={onSucces}
-        setForm={setForm}
-        form={form}
-        />
-      <Table data={contacts} setForm={setForm}/>
-    </div>
+    <BrowserRouter>    
+      <div className="App">
+        <Form 
+          loading={loading} 
+          setLoading={setLoading} 
+          onSucces={onSucces}
+          setForm={setForm}
+          form={form}
+          />
+        <Table data={contacts} setForm={setForm} setData={setContacts} onSucces={onSucces}/>
+      </div>
+    </BrowserRouter>
   );
 }
 
